@@ -1,12 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BatteryService } from '../battery/battery.service';
+import { BatteryService } from './battery.service';
 
 describe('BatteryService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: BatteryService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.get(BatteryService);
+  });
 
   it('should be created', () => {
-    const service: BatteryService = TestBed.get(BatteryService);
     expect(service).toBeTruthy();
+  });
+
+  describe('start', () => {
+    it('should start the battery', () => {
+      service.start();
+      expect(service.getIsOn()).toEqual(true);
+    });
+  });
+
+  describe('stop', () => {
+    it('should stop the battery', () => {
+      service.start();
+      service.stop();
+      expect(service.getIsOn()).toEqual(false);
+    });
   });
 });

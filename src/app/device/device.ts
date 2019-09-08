@@ -1,19 +1,19 @@
 export class Device {
-  IsOn: boolean;
+  public isOn: boolean;
 
   constructor() {
-    this.IsOn = false;
+    this.isOn = false;
   }
 
   public start(): void {
-    this.IsOn = true;
+    this.isOn = true;
   }
 
   public stop(): void {
-    this.IsOn = false;
+    this.isOn = false;
   }
 
   public getIsOn(): boolean {
-    return this.IsOn;
+    return this.isOn;
   }
 }

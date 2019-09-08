@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Device } from '../device/device';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BatteryService extends Device {
-  constructor() {
-    super();
+export class BatteryService {
+  public isOn: boolean;
+
+  constructor() {}
+
+  public start(): void {
+    this.isOn = true;
+  }
+
+  public stop(): void {
+    this.isOn = false;
+  }
+
+  public getIsOn(): boolean {
+    return this.isOn;
   }
 }
