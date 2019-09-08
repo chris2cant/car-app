@@ -7,26 +7,26 @@ import { CarService } from './car.service';
   styleUrls: ['./car.component.scss']
 })
 export class CarComponent implements OnInit {
-  isRunning: boolean;
+  isOn: boolean;
 
   constructor(private carService: CarService) {
-    this.isRunning = false;
+    this.isOn = false;
   }
   ngOnInit() {
-    this.syncIsRunning();
+    this.syncIsOn();
   }
 
   public start(): void {
     this.carService.start();
-    this.syncIsRunning();
+    this.syncIsOn();
   }
 
   public stop(): void {
     this.carService.stop();
-    this.syncIsRunning();
+    this.syncIsOn();
   }
 
-  private syncIsRunning(): void {
-    this.isRunning = this.carService.getIsRunning();
+  private syncIsOn(): void {
+    this.isOn = this.carService.getIsOn();
   }
 }

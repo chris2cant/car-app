@@ -1,24 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Device } from '../device/device';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarService {
-  isRunning: boolean;
-
+export class CarService extends Device {
   constructor() {
-    this.isRunning = false;
-  }
-
-  public start(): void {
-    this.isRunning = true;
-  }
-
-  public stop(): void {
-    this.isRunning = false;
-  }
-
-  public getIsRunning(): boolean {
-    return this.isRunning;
+    super();
   }
 }

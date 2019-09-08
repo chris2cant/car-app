@@ -10,10 +10,9 @@ describe('CarComponent', () => {
   let carServiceStub: Partial<CarService>;
   let carService: CarService;
   carServiceStub = {
-    isRunning: false,
     start: () => {},
     stop: () => {},
-    getIsRunning: (): boolean => {
+    getIsOn: (): boolean => {
       return true;
     }
   };
@@ -47,15 +46,15 @@ describe('CarComponent', () => {
       component.stop();
       expect(carService.stop).toHaveBeenCalled();
     });
-    it('should call getIsRunning after start', () => {
-      spyOn(carService, 'getIsRunning');
+    it('should call getIsOn after start', () => {
+      spyOn(carService, 'getIsOn');
       component.start();
-      expect(carService.getIsRunning).toHaveBeenCalled();
+      expect(carService.getIsOn).toHaveBeenCalled();
     });
-    it('should call getIsRunning after stop', () => {
-      spyOn(carService, 'getIsRunning');
+    it('should call getIsOn after stop', () => {
+      spyOn(carService, 'getIsOn');
       component.stop();
-      expect(carService.getIsRunning).toHaveBeenCalled();
+      expect(carService.getIsOn).toHaveBeenCalled();
     });
   });
 
