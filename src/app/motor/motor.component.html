@@ -1,0 +1,6 @@
+<div class="motor">
+  <h2>Motor</h2>
+  <div [ngClass]="{ 'status-on': isOn === true, 'status-off': isOn === false }">
+    {{ isOn ? 'On' : 'Off' }}
+  </div>
+</div>
