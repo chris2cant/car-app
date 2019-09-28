@@ -1,13 +1,42 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CarService } from './car.service';
+import { BatteryService } from '../battery/battery.service';
+import { MotorService } from '../motor/motor.service';
 
 describe('CarService', () => {
   let service: CarService;
+  let batteryServiceStub: Partial<BatteryService>;
+  let batteryService: BatteryService;
+  let motorServiceStub: Partial<MotorService>;
+  let motorService: MotorService;
+
+  batteryServiceStub = {
+    start: () => {},
+    stop: () => {},
+    getIsOn: (): boolean => {
+      return true;
+    }
+  };
+
+  motorServiceStub = {
+    start: () => {},
+    stop: () => {},
+    getIsOn: (): boolean => {
+      return true;
+    }
+  };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: BatteryService, useValue: batteryServiceStub },
+        { provide: MotorService, useValue: motorServiceStub }
+      ]
+    });
     service = TestBed.get(CarService);
+    batteryService = TestBed.get(BatteryService);
+    motorService = TestBed.get(MotorService);
   });
 
   it('should be created', () => {
@@ -19,6 +48,16 @@ describe('CarService', () => {
       service.start();
       expect(service.getIsOn()).toEqual(true);
     });
+    it('should call to start de battery', () => {
+      spyOn(batteryService, 'start');
+      service.start();
+      expect(batteryService.start).toHaveBeenCalled();
+    });
+    it('should call to start de motor', () => {
+      spyOn(motorService, 'start');
+      service.start();
+      expect(motorService.start).toHaveBeenCalled();
+    });
   });
 
   describe('stop', () => {
@@ -26,6 +65,16 @@ describe('CarService', () => {
       service.start();
       service.stop();
       expect(service.getIsOn()).toEqual(false);
+    });
+    it('should call to stop de battery', () => {
+      spyOn(batteryService, 'stop');
+      service.stop();
+      expect(batteryService.stop).toHaveBeenCalled();
+    });
+    it('should call to stop de motor', () => {
+      spyOn(motorService, 'stop');
+      service.stop();
+      expect(motorService.stop).toHaveBeenCalled();
     });
   });
 });
