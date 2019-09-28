@@ -1,0 +1,6 @@
+<div class="battery">
+  <h2>Battery</h2>
+  <div [ngClass]="{ 'status-on': isOn === true, 'status-off': isOn === false }">
+    {{ isOn ? 'On' : 'Off' }}
+  </div>
+</div>
