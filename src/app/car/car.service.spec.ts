@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { CarService } from './car.service';
 import { BatteryService } from '../battery/battery.service';
 import { MotorService } from '../motor/motor.service';
+import { Subject } from 'rxjs';
 
 describe('CarService', () => {
   let service: CarService;
@@ -14,6 +15,7 @@ describe('CarService', () => {
   batteryServiceStub = {
     start: () => {},
     stop: () => {},
+    isOnChange: new Subject<boolean>(),
     getIsOn: (): boolean => {
       return true;
     }
@@ -22,6 +24,7 @@ describe('CarService', () => {
   motorServiceStub = {
     start: () => {},
     stop: () => {},
+    isOnChange: new Subject<boolean>(),
     getIsOn: (): boolean => {
       return true;
     }
@@ -67,11 +70,13 @@ describe('CarService', () => {
       expect(service.getIsOn()).toEqual(false);
     });
     it('should call to stop de battery', () => {
+      service.isOn = true;
       spyOn(batteryService, 'stop');
       service.stop();
       expect(batteryService.stop).toHaveBeenCalled();
     });
     it('should call to stop de motor', () => {
+      service.isOn = true;
       spyOn(motorService, 'stop');
       service.stop();
       expect(motorService.stop).toHaveBeenCalled();

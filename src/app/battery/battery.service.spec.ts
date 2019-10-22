@@ -11,6 +11,7 @@ describe('BatteryService', () => {
   });
 
   it('should be created', () => {
+    expect(service.level).toEqual(100);
     expect(service).toBeTruthy();
   });
 
@@ -28,4 +29,6 @@ describe('BatteryService', () => {
       expect(service.getIsOn()).toEqual(false);
     });
   });
+
+  describe('level', () => {});
 });
